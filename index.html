@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects</title>
+</head>
+<body>
+    <h1>Objects</h1>
+    <script>
+        // Задание1
+        const pet = {
+            type: "Кошка",
+            name: "Марья",
+            sound: "мяу",
+            say: function(text) {
+                if (text) {
+                    return `${this.type} ${this.name} говорит ${text}`
+                } else {
+                    return `${this.type} ${this.name} говорит ${this.sound}`
+                }
+            }
+        }
+
+        // Задание2
+        const obj2 = 
+        {
+            "potato": "овощи",
+            "carrot": "овощи",
+            "banana": "фрукты",
+            "orange": "фрукты",
+            "apple": "фрукты",
+            "strawberry": "ягоды",
+            "tomato": "овощи",
+            "melon": "фрукты",
+            "lemon": "фрукты"
+        }
+
+        const obj3 = {}
+        for (let key in obj2) {
+            let type = obj2[key]
+            if (obj3[type]) {
+                ++obj3[type]
+            } else {
+                obj3[type] = 1
+            }
+        }
+        console.log(obj3)
+
+        // Задание3
+        function Car(color, country, year) {
+            this.color = color
+            this.country = country
+            this.year = year
+        }
+        const cars = {
+            Toyota: new Car('Red', 'Japan', 2010),
+            BMW: new Car('Black', 'Germany', 2015),
+            Ford: new Car('Blue', 'USA', 2008),
+            Honda: new Car('White', 'Japan', 2012),
+            Mercedes: new Car('Silver', 'Germany', 2020),
+            Chevrolet: new Car('Yellow', 'USA', 2005),
+            Nissan: new Car('Green', 'Japan', 2011),
+            Volkswagen: new Car('Grey', 'Germany', 2014),
+            Hyundai: new Car('Brown', 'South Korea', 2009),
+            Kia: new Car('Purple', 'South Korea', 2020)
+        }
+        let years = []
+        for (key in cars) {
+            years.push(cars[key]['year'])
+        }
+        console.log("Информация о трёх самых старых автомобилях: ")
+        let minYears = years.concat()
+        let objAntiDublicate = {}
+        for (let i = 0; i < 3; i++) {
+            let min = Math.min(...minYears)
+            for (key in cars) {
+                if (cars[key]['year'] == min) {
+                    if (cars[key] !== objAntiDublicate) {
+                        console.log(key, ":", cars[key])
+                        objAntiDublicate = cars[key]
+                        break
+                    }
+                }
+            }
+            minYears.splice(minYears.indexOf(min), 1)
+        }
+        console.log("Информация о трёх самых новых автомобилях: ")
+        let maxYears = years.concat()
+        objAntiDublicate = {}
+        for (let i = 0; i < 3; i++) {
+            let max = Math.max(...maxYears)
+            for (key in cars) {
+                if (cars[key]['year'] == max) {
+                    if (cars[key] !== objAntiDublicate) {
+                        console.log(key, ":", cars[key])
+                        objAntiDublicate = cars[key]
+                        break
+                    }
+                }
+            }
+            maxYears.splice(maxYears.indexOf(max), 1)
+        }
+    </script>
+</body>
+</html>
